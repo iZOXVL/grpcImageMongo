@@ -1,0 +1,38 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "ImagenService";
+
+service ImagenService {
+  rpc UploadImage (UploadImageRequest) returns (UploadImageResponse);
+  rpc GetAllImages (GetAllImagesRequest) returns (GetAllImagesResponse);
+  rpc GetImage (GetImageRequest) returns (GetImageResponse); // Nuevo servicio para obtener una imagen específica
+}
+
+message UploadImageRequest {
+  string autorLibroGuid = 1;
+  bytes imagen = 2;
+}
+
+message UploadImageResponse {
+  string message = 1;
+}
+
+message GetAllImagesRequest {}
+
+message GetAllImagesResponse {
+  repeated ImageData images = 1;
+}
+
+message GetImageRequest { // Nuevo mensaje de solicitud
+  string autorLibroGuid = 1;
+}
+
+message GetImageResponse { // Nuevo mensaje de respuesta
+  string autorLibroGuid = 1;
+  bytes imagen = 2;
+}
+
+message ImageData {
+  string autorLibroGuid = 1;
+  bytes imagen = 2;
+}
